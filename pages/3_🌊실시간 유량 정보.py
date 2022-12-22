@@ -31,7 +31,7 @@ def flux(df):
     date=int(date)-1
     flux_df = pd.DataFrame()
     for i in df['정수장 코드']:
-        st.write(i)
+        
         url=f'http://223.130.129.189:9191/getWaterFlux/sujCode={i}&stDt={date}&stTm={hour}&edDt={date}&edTm={hour+1}'
         response = requests.get(url)
         content = response.text
@@ -58,6 +58,7 @@ def flux(df):
 
         #xml값 DataFrame으로 만들기
         tmp_df = pd.DataFrame(row_list, columns=name_list)
+        st.write(tmp_df)
         flux_df = pd.concat([flux_df,tmp_df],ignore_index=True)
     return flux_df
     
