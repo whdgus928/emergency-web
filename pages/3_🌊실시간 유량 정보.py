@@ -71,7 +71,7 @@ def main():
 
     st.header("🌊실시간 유량 정보")
     st.subheader("선택한 지역에 위치한 정수장 정보입니다.")
-    df=pd.read_csv('C:\\Users\\user\\Desktop\\VS code\\disaster-main\\disaster-main\\pages\\using_data\\정수장코드.csv',encoding='utf-8-sig')
+    df=pd.read_csv('C:\\Users\\user\\Desktop\\VS code\\disaster-main\\pages\\using_data\\정수장코드.csv',encoding='utf-8-sig')
     
     sido_list = list(df['시도'].unique())
     sido_list.append('전국')
