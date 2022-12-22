@@ -35,13 +35,11 @@ def flux(df):
         url=f'http://223.130.129.189:9191/getWaterFlux/sujCode={i}&stDt={date}&stTm={hour}&edDt={date}&edTm={hour+1}'
         response = requests.get(url)
         content = response.text
-        st.write(content)
         xml_obj = bs4.BeautifulSoup(content,'lxml-xml')
         rows = xml_obj.findAll('item')
         name_list = [] # 열이름값
         row_list = [] # 행값
         value_list = [] #데이터값 
-        st.write(rows)
         for i in range(0, len(rows)):
             columns = rows[i].find_all()
             #첫째 행 데이터 수집
