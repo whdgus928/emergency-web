@@ -55,6 +55,7 @@ def flux(df):
             row_list.append(value_list)
             # 데이터 리스트 값 초기화
             value_list=[]
+            st.write(columns)
 
         #xml값 DataFrame으로 만들기
         tmp_df = pd.DataFrame(row_list, columns=name_list)
