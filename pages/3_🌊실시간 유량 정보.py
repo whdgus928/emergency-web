@@ -58,7 +58,6 @@ def flux(df):
 
         #xml값 DataFrame으로 만들기
         tmp_df = pd.DataFrame(row_list, columns=name_list)
-        st.write(tmp_df)
         flux_df = pd.concat([flux_df,tmp_df],ignore_index=True)
     return flux_df
     
