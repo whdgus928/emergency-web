@@ -65,5 +65,5 @@ code=df.loc[0,'cd']
 
 drought_df=droughtvalue(code)
 drought_df.rename(columns={'anldt':'날짜','anlrst':'분석결과','anlval':'분석값','dv':'분석구분','hjdcd':'행정코드'},inplace=True)
-drought_df=drought_df[['날짜','분석값','분석결과','분석구분']]
+#drought_df=drought_df[['날짜','분석값','분석결과','분석구분']]
 st.write(drought_df.reset_index(drop = True))
