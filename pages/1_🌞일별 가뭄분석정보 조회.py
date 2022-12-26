@@ -48,7 +48,7 @@ st.write("전국에 물 용도별 가뭄정보입니다!🙏")
 
 life_df,farm_df=drought()
 st.write("생활 및 공업용수 가뭄 정보입니다.")
-st.write(life_df.reset_index(drop = True))
+st.dataframe(life_df.reset_index(drop = True))
 
 st.write("농업용수 가뭄정보입니다.")
-st.write(farm_df.reset_index(drop = True))
+st.dataframe(farm_df.reset_index(drop = True))
