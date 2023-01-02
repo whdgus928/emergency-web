@@ -35,10 +35,9 @@ st.set_page_config(
     page_title = "⛔위기 대응 프로젝트",
     layout = 'wide'
 )
-# 📜
 
 st.header("🌞일별 가뭄분석정보 조회")
-st.write("전국에 물 용도별 가뭄정보입니다!🙏")
+
 # df = pd.read_csv(data_path)
 
 # cd_nm = st.sidebar.selectbox('시도 선택',list(df['시도'].unique()))
@@ -47,6 +46,8 @@ st.write("전국에 물 용도별 가뭄정보입니다!🙏")
 # st.write(df.reset_index(drop = True))
 
 try:
+    st.write("전국에 물 용도별 가뭄정보입니다!🙏")
+    
     life_df,farm_df=drought()
     st.write("생활 및 공업용수 가뭄 정보입니다.")
     st.dataframe(life_df.reset_index(drop = True))
