@@ -46,9 +46,12 @@ st.write("전국에 물 용도별 가뭄정보입니다!🙏")
 # df = df[(df['시도'] == cd_nm) & (df['시군구'] == sgg_nm)]
 # st.write(df.reset_index(drop = True))
 
-life_df,farm_df=drought()
-st.write("생활 및 공업용수 가뭄 정보입니다.")
-st.dataframe(life_df.reset_index(drop = True))
+try:
+    life_df,farm_df=drought()
+    st.write("생활 및 공업용수 가뭄 정보입니다.")
+    st.dataframe(life_df.reset_index(drop = True))
 
-st.write("농업용수 가뭄정보입니다.")
-st.dataframe(farm_df.reset_index(drop = True))
+    st.write("농업용수 가뭄정보입니다.")
+    st.dataframe(farm_df.reset_index(drop = True))
+except:
+    st.subheader('현재 가뭄인 지역이 없습니다.')
