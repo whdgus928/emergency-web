@@ -42,7 +42,7 @@ try:
         text = ", ".join(list_)
         st.subheader("❗" + text)
 except:
-    st.write('현재 가뭄인 지역이 없습니다.')
+    st.subheader('현재 가뭄인 지역이 없습니다.')
 
 st.write("해당 지역 거주자 분들은 단수 상황에 대비해 물을 절약해주시기 바랍니다.")
 
