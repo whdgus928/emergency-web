@@ -6,6 +6,8 @@ import requests
 import json
 import os
 from PIL import Image
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
 
 filePath, fileName = os.path.split(__file__)
 # 페이지 기본 설정
@@ -24,7 +26,12 @@ def drought():
     date=str(dt_now.date()).replace('-','')
     date=str(date)[:-2]
 
-    url=f'http://223.130.129.189:9191/getInfoList/numOfRows=200&pageNo=1&_type=json&stDt={date}&edDt={date}'
+    now = datetime.now()
+    before_one_month = now - relativedelta(months=1)
+    before_one_month=str(before_one_month)[:7]
+    
+    
+    url=f'http://223.130.129.189:9191/getInfoList/numOfRows=200&pageNo=1&_type=json&stDt={before_one_month}&edDt={date}'
 
     response = requests.get(url)
     json_ob = json.loads(response.content)
