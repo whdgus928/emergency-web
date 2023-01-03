@@ -39,6 +39,6 @@ si.sort()
 sgg_nm = st.sidebar.selectbox('시군구 선택',si)
 df = df[(df['시도명'] == cd_nm) & (df['시군구명'] == sgg_nm)].reset_index(drop = True)
 
-st.write(df.reset_index(drop = True))
+st.write(df.loc[:,['업체명',	'품목명',	'주소',	'대표전화번호']].reset_index(drop = True))
 m = shelter_map(df)
 st_folium(m , width=1400, height=700, returned_objects=[])
