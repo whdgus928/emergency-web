@@ -28,7 +28,7 @@ def flux(df):
     date=str(dt_now.date()).replace('-','')
     date=int(date)-1
     flux_df = pd.DataFrame()
-    st.write(df['정수장 코드']) #점검용
+    st.write(dt_now) #점검용
     for i in df['정수장 코드']:
         url=f'http://223.130.129.189:9191/getWaterFlux/sujCode={i}&stDt={date}&stTm={hour}&edDt={date}&edTm={hour+1}'
         response = requests.get(url)
@@ -57,7 +57,6 @@ def flux(df):
         #xml값 DataFrame으로 만들기
         tmp_df = pd.DataFrame(row_list, columns=name_list)
         flux_df = pd.concat([flux_df,tmp_df],ignore_index=True)
-        st.write(flux_df) #점검용
         #corona_df.to_csv('정수장.csv',encoding='utf-8-sig')
     return flux_df
     
@@ -84,7 +83,6 @@ def main():
     m = shelter_map(df)
     st_folium(m , width=1400, height=700, returned_objects=[])
     flux_df=flux(df)
-    st.write(flux_df)  #점검용
     #flux_df=flux_df[['fcltyNm','dataItemDesc','dataItemDiv','dataVal','itemUnit','occrrncDt']]
     #flux_df.rename(columns={'fcltyNm':'시설명','dataItemDesc':'자료 수집 설명','dataItemDiv':'데이터항목구분','dataVal':'유량','itemUnit':'측정단위','occrrncDt':'발생일시'},inplace=True)
     st.subheader(" 선택한 지역 정수장의 실시간 유량 정보입니다.")
