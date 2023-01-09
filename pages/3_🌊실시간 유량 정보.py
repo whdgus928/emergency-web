@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 import requests
-import json
 import os
 import folium
 import bs4
@@ -9,7 +8,6 @@ from folium.plugins import MarkerCluster
 # pip install streamlit-folium 관리자권한 아나콘다
 from streamlit_folium import st_folium
 import datetime
-from PIL import Image
 
 filePath, fileName = os.path.split(__file__)
 
@@ -31,15 +29,16 @@ def flux(df):
     date=int(date)-1
     flux_df = pd.DataFrame()
     for i in df['정수장 코드']:
-        
         url=f'http://223.130.129.189:9191/getWaterFlux/sujCode={i}&stDt={date}&stTm={hour}&edDt={date}&edTm={hour+1}'
         response = requests.get(url)
         content = response.text
+
         xml_obj = bs4.BeautifulSoup(content,'lxml-xml')
         rows = xml_obj.findAll('item')
         name_list = [] # 열이름값
         row_list = [] # 행값
         value_list = [] #데이터값 
+        
         for i in range(0, len(rows)):
             columns = rows[i].find_all()
             #첫째 행 데이터 수집
@@ -53,11 +52,12 @@ def flux(df):
             row_list.append(value_list)
             # 데이터 리스트 값 초기화
             value_list=[]
-            
 
         #xml값 DataFrame으로 만들기
         tmp_df = pd.DataFrame(row_list, columns=name_list)
         flux_df = pd.concat([flux_df,tmp_df],ignore_index=True)
+        
+        #corona_df.to_csv('정수장.csv',encoding='utf-8-sig')
     return flux_df
     
 def main():
@@ -70,7 +70,7 @@ def main():
     st.subheader("선택한 지역에 위치한 정수장 정보입니다.")
     data_path = os.path.join(filePath,'using_data','정수장코드.csv')
     df = pd.read_csv(data_path)
-
+    
     sido_list = list(df['시도'].unique())
     sido_list.append('전국')
     #sido_list.insert(0, '전국')
@@ -84,11 +84,11 @@ def main():
     st_folium(m , width=1400, height=700, returned_objects=[])
     flux_df=flux(df)
     
-    #flux_df=flux_df[['fcltyNm','dataItemDesc','dataItemDiv','dataVal','itemUnit','occrrncDt']]
+    flux_df=flux_df[['fcltyNm','dataItemDesc','dataItemDiv','dataVal','itemUnit','occrrncDt']]
     flux_df.rename(columns={'fcltyNm':'시설명','dataItemDesc':'자료 수집 설명','dataItemDiv':'데이터항목구분','dataVal':'유량','itemUnit':'측정단위','occrrncDt':'발생일시'},inplace=True)
     st.subheader(" 선택한 지역 정수장의 실시간 유량 정보입니다.")
 
-    st.write(flux_df)
+    st.dataframe(flux_df)
     
 if __name__ == "__main__":
     main()
