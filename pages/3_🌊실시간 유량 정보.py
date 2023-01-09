@@ -30,8 +30,7 @@ def flux(df):
     flux_df = pd.DataFrame()
 
     from pytz import timezone
-    from datetime import datetime
-    today = datetime.now(timezone('Asia/Seoul'))
+    today = datetime.datetime.now(timezone('Asia/Seoul'))
     st.write(today) #점검용
     for i in df['정수장 코드']:
         url=f'http://223.130.129.189:9191/getWaterFlux/sujCode={i}&stDt={date}&stTm={hour}&edDt={date}&edTm={hour+1}'
