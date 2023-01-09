@@ -64,7 +64,7 @@ def flux(df):
     
 def main():
     st.set_page_config(
-    page_title = "⛔위기 대응 프로젝트",
+    page_title = "위기 대응 플랫폼",
     layout = 'wide' 
     )
 
