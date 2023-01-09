@@ -9,6 +9,7 @@ from folium.plugins import MarkerCluster
 from streamlit_folium import st_folium
 import datetime
 from pytz import timezone
+from dateutil.relativedelta import relativedelta
 
 filePath, fileName = os.path.split(__file__)
 
@@ -25,10 +26,14 @@ def shelter_map(data):
 
 def flux(df):
     dt_now = datetime.datetime.now(timezone('Asia/Seoul'))
+    dt_now = dt_now - relativedelta(days=1)
+        
     hour=dt_now.hour
     date=str(dt_now.date()).replace('-','')
-    date=int(date)-1
     flux_df = pd.DataFrame()
+
+
+
 
     for i in df['정수장 코드']:
         url=f'http://223.130.129.189:9191/getWaterFlux/sujCode={i}&stDt={date}&stTm={hour}&edDt={date}&edTm={hour+1}'
