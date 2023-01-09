@@ -11,7 +11,7 @@ from dateutil.relativedelta import relativedelta
 filePath, fileName = os.path.split(__file__)
 # 페이지 기본 설정
 st.set_page_config(
-    page_title = "⛔위기 대응 프로젝트",
+    page_title = "위기 대응 플랫폼",
     layout = 'wide'
 )
 
