@@ -8,6 +8,7 @@ from folium.plugins import MarkerCluster
 # pip install streamlit-folium 관리자권한 아나콘다
 from streamlit_folium import st_folium
 import datetime
+from pytz import timezone
 
 filePath, fileName = os.path.split(__file__)
 
@@ -23,14 +24,12 @@ def shelter_map(data):
         return m
 
 def flux(df):
-    dt_now = datetime.datetime.now()
+    dt_now = datetime.datetime.now(timezone('Asia/Seoul'))
     hour=dt_now.hour
     date=str(dt_now.date()).replace('-','')
     date=int(date)-1
     flux_df = pd.DataFrame()
 
-    from pytz import timezone
-    today = datetime.datetime.now(timezone('Asia/Seoul'))
     st.write(today) #점검용
     for i in df['정수장 코드']:
         url=f'http://223.130.129.189:9191/getWaterFlux/sujCode={i}&stDt={date}&stTm={hour}&edDt={date}&edTm={hour+1}'
