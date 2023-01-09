@@ -84,8 +84,8 @@ def main():
     st_folium(m , width=1400, height=700, returned_objects=[])
     flux_df=flux(df)
     
-    flux_df=flux_df[['fcltyNm','dataItemDesc','dataItemDiv','dataVal','itemUnit','occrrncDt']]
-    flux_df.rename(columns={'fcltyNm':'시설명','dataItemDesc':'자료 수집 설명','dataItemDiv':'데이터항목구분','dataVal':'유량','itemUnit':'측정단위','occrrncDt':'발생일시'},inplace=True)
+    #flux_df=flux_df[['fcltyNm','dataItemDesc','dataItemDiv','dataVal','itemUnit','occrrncDt']]
+    #flux_df.rename(columns={'fcltyNm':'시설명','dataItemDesc':'자료 수집 설명','dataItemDiv':'데이터항목구분','dataVal':'유량','itemUnit':'측정단위','occrrncDt':'발생일시'},inplace=True)
     st.subheader(" 선택한 지역 정수장의 실시간 유량 정보입니다.")
 
     st.write(flux_df)
