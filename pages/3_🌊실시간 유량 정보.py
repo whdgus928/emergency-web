@@ -27,13 +27,9 @@ def shelter_map(data):
 def flux(df):
     dt_now = datetime.datetime.now(timezone('Asia/Seoul'))
     dt_now = dt_now - relativedelta(days=1)
-        
     hour=dt_now.hour
     date=str(dt_now.date()).replace('-','')
     flux_df = pd.DataFrame()
-
-
-
 
     for i in df['정수장 코드']:
         url=f'http://223.130.129.189:9191/getWaterFlux/sujCode={i}&stDt={date}&stTm={hour}&edDt={date}&edTm={hour+1}'
@@ -89,8 +85,8 @@ def main():
     m = shelter_map(df)
     st_folium(m , width=1400, height=700, returned_objects=[])
     flux_df=flux(df)
-    #flux_df=flux_df[['fcltyNm','dataItemDesc','dataItemDiv','dataVal','itemUnit','occrrncDt']]
-    #flux_df.rename(columns={'fcltyNm':'시설명','dataItemDesc':'자료 수집 설명','dataItemDiv':'데이터항목구분','dataVal':'유량','itemUnit':'측정단위','occrrncDt':'발생일시'},inplace=True)
+    flux_df=flux_df[['fcltyNm','dataItemDesc','dataItemDiv','dataVal','itemUnit','occrrncDt']]
+    flux_df.rename(columns={'fcltyNm':'시설명','dataItemDesc':'자료 수집 설명','dataItemDiv':'데이터항목구분','dataVal':'유량','itemUnit':'측정단위','occrrncDt':'발생일시'},inplace=True)
     st.subheader(" 선택한 지역 정수장의 실시간 유량 정보입니다.")
 
     st.write(flux_df)
