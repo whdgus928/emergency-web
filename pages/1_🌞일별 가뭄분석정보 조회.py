@@ -52,13 +52,13 @@ st.header("🌞일별 가뭄분석정보 조회")
 # st.write(df.reset_index(drop = True))
 
 try:
-    st.subheader("전국에 물 용도별 가뭄정보입니다!🙏")
+    st.subheader("전국에 물 용도별 가뭄정보입니다")
 
     life_df,farm_df=drought()
-    st.title("생활 및 공업용수 가뭄 정보입니다.")
+    st.caption("생활 및 공업용수 가뭄 정보입니다.")
     st.dataframe(life_df.reset_index(drop = True))
 
-    st.title("농업용수 가뭄정보입니다.")
+    st.caption("농업용수 가뭄정보입니다.")
     st.dataframe(farm_df.reset_index(drop = True))
 except:
     st.subheader('현재 가뭄인 지역이 없습니다.')
