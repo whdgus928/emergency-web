@@ -8,3 +8,4 @@ folium
 datetime
 bs4
 lxml
+streamlit_folium
