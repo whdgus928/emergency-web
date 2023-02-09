@@ -87,3 +87,5 @@ st.write("해당 지역 거주자 분들은 단수 상황에 대비해 물을 �
 
 image = Image.open(os.path.join(filePath,'pages','using_data', '물절약.png'))
 st.image(image)
+
+st.write('https://www.safekorea.go.kr/idsiSFK/neo/sfk/cs/contents/prevent/prevent12.html?menuSeq=126')
